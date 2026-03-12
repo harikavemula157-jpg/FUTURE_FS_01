@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Briefcase, FolderOpen, Cpu, Code2 } from "lucide-react";
+import { container, item } from "@/lib/animations";
 
 const stats = [
   { icon: Briefcase, value: "3+", label: "Years Experience" },
@@ -8,32 +9,14 @@ const stats = [
   { icon: Code2, value: "100K+", label: "Lines of Code" },
 ];
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] } },
-};
-
 const AboutSection = () => {
   return (
     <section id="about" className="py-24">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="max-w-[1280px] mx-auto px-4 sm:px-8"
-      >
-        <motion.h2 variants={item} className="font-display font-medium text-section mb-4 gradient-text">
-          About Me
-        </motion.h2>
+      <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
+        className="max-w-[1280px] mx-auto px-4 sm:px-8">
+        <motion.h2 variants={item} className="font-display font-medium text-section mb-4 gradient-text">About Me</motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 mt-8">
-          {/* Text column */}
           <motion.div variants={item} className="space-y-4">
             <p className="text-muted-foreground leading-relaxed">
               I am a passionate full-stack developer with over 3 years of experience building modern web applications. My journey started with a curiosity about how things work on the internet, which quickly evolved into a deep love for crafting elegant solutions to complex problems.
@@ -46,14 +29,9 @@ const AboutSection = () => {
             </p>
           </motion.div>
 
-          {/* Stats grid */}
           <motion.div variants={container} className="grid grid-cols-2 gap-4">
             {stats.map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={item}
-                className="glass-card glass-card-hover p-5 flex flex-col items-center text-center"
-              >
+              <motion.div key={stat.label} variants={item} className="glass-card glass-card-hover p-5 flex flex-col items-center text-center">
                 <stat.icon size={24} className="text-primary mb-3" />
                 <span className="font-display text-2xl font-bold gradient-text">{stat.value}</span>
                 <span className="text-xs text-muted-foreground mt-1">{stat.label}</span>
